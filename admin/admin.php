@@ -38,7 +38,8 @@
     padding: 3rem ;
     color: #fff;
     }
-        .perfil-link {
+        .perfil-link
+         {
         display: flex;
         align-items: center;
         gap: 8px;
@@ -64,9 +65,65 @@
     .card-dashboard{
         background-image:
             linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
-            url('/oficina_mecanica/src/carddashbk01.png');
+            url('/oficina_mecanica/src/carddashbkg01.png');
     }
-    
+
+    .card-orcamento{
+        
+        background-image:
+            linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+            url('/oficina_mecanica/src/cardorcabk01.png');
+    }
+    .card-estoq{
+        
+        background-image:
+            linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+            url('/oficina_mecanica/src/cardestoq.jpg');
+    }
+    .card-body{
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            }
+
+             .icone-card {
+             width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #dc2626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #fff;
+            }
+            .card-title{
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            }
+            .card-text{
+            color: #d4d4d4;
+            margin-bottom: 1.25rem;
+            }
+             .btn-red{
+            background-color: #dc2626;
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            min-width: 350px;
+             }
 
     </style>     
     </head>
@@ -113,6 +170,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="oficina_mecanica/orcamentos.php">
                         orçamentos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="oficina_mecanica/clientes.php">
+                        agendamentos
                     </a>
                 </li>
 
@@ -217,7 +280,7 @@
                     <div class="card h-100 card-dashboard">
                         <div class="card-body">
                             <div class="icone-card">
-                            <i class="bi bi-calendar2-check"></i>
+                            <i class="bi bi-bar-chart-line"></i>
                             </div>
                     <h3 class="card-title text-center">Dashboard</h3>
                     <p class="card-text">Informações de faturamento.</p>
@@ -229,14 +292,28 @@
 
 
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 card-agendamento">
+                    <div class="card h-100 card-orcamento">
                         <div class="card-body">
                             <div class="icone-card">
-                            <i class="bi bi-calendar2-check"></i>
+                            <i class="bi bi-clipboard-data"></i>
                             </div>
-                    <h3 class="card-title text-center">Dashboard</h3>
-                    <p class="card-text">Informações de faturamento.</p>
-                    <a href="/oficina_mecanica/admin/dashboard.php" class="btn btn-red">Ver: 
+                    <h3 class="card-title text-center">Orçamentos</h3>
+                    <p class="card-text">Orçamentos a serem realizados.</p>
+                    <a href="/oficina_mecanica/orcamentos.php" class="btn btn-red">Ver: 
+                    <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 card-estoq">
+                        <div class="card-body">
+                            <div class="icone-card">
+                            <i class="bi bi-boxes"></i>
+                            </div>
+                    <h3 class="card-title text-center">Estoque</h3>
+                    <p class="card-text">Acompanhe os produtos no estoque.</p>
+                    <a href="/oficina_mecanica/orcamentos.php" class="btn btn-red">Ver: 
                     <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
