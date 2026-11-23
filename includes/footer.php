@@ -30,7 +30,7 @@
 
                 <h5>
                     <i class="bi bi-tools"></i>
-                    Oficina Mecânica
+                    GV Performance
                 </h5>
 
                 
@@ -42,7 +42,7 @@
             <div class="col-md-4">
                      <p class="text-center text-secondary mb-0">
 
-            © 2026 Oficina Mecânica
+            © 2026 GV Performance
 
                  </p>
 

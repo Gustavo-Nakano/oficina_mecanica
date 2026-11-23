@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Oficina Mecânica</title>
+    <title>GV Performance</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -151,7 +151,7 @@
 
         <a class="navbar-brand fw-bold" href="index.php">
             <i class="bi bi-tools"></i>
-            Oficina Mecânica
+            GV Performance
         </a>
 
         <button
@@ -479,13 +479,6 @@
 
                 </p>
 
-                <p>
-
-                    Através do nosso sistema, o cliente poderá
-                    cadastrar seus veículos, realizar agendamentos
-                    e solicitar orçamentos.
-
-                </p>
 
             </div>
 
@@ -507,10 +500,9 @@
 
                 <h5>
                     <i class="bi bi-tools"></i>
-                    Oficina Mecânica
+                    GV Performance
                 </h5>
-
-                
+            
 
                 
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-br" >
     <head>
-        <title>Oficina Mecânica</title>
+        <title>GV Performance</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -132,9 +132,9 @@
 
 <div class="container-fluid">
 
-    <a class="navbar-brand fw-bold" href="/oficina_mecanica/index.php">
+    <a class="navbar-brand fw-bold" href="/oficina_mecanica/cliente/cliente.php">
         <i class="bi bi-tools"></i>
-        Oficina Mecânica
+        GV Performance
     </a>
 
     <button
@@ -175,6 +175,50 @@
                 </a>
             </li>
 
+            <li class="nav-item dropdown ms-lg-4">
+
+    <a class="nav-link dropdown-toggle perfil-link"
+       href="#"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-expanded="false">
+
+        <i class="bi bi-person-circle"></i>
+
+        <span>Olá, Cliente</span>
+
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+
+        <li>
+            <a class="dropdown-item" href="#">
+                <i class="bi bi-person me-2"></i>
+                Meu Perfil
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item" href="#">
+                <i class="bi bi-gear me-2"></i>
+                Configurações
+            </a>
+        </li>
+
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+
+        <li>
+            <a class="dropdown-item text-danger" href="/oficina_mecanica/index.php">                <i class="bi bi-box-arrow-right me-2"></i>
+                Sair
+            </a>
+        </li>
+
+    </ul>
+
+</li>
+
         </ul>
 
     </div>
@@ -182,7 +226,7 @@
 </div>
 
 </nav>
-
+<main>
 <section class="hero">
     <div class="container">
         <h1>Bem-Vindo(a)</h1>
@@ -256,7 +300,7 @@
 
             <h5 class="text-secondary">
                 <i class="bi bi-tools"></i>
-                Oficina Mecânica
+                GV Performance
             </h5>
 
         </div>

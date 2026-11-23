@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-br" data-bs-theme="dark">
     <head>
-        <title>Oficina mecânica</title>
+        <title>GV Performance</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,7 +23,7 @@
 
         <a class="navbar-brand fw-bold" href="index.php">
             <i class="bi bi-tools"></i>
-            Oficina Mecânica
+          GV Performance
         </a>
 
         <button
