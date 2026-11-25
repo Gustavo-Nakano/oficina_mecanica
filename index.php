@@ -29,7 +29,7 @@
             color: white;
             padding: 100px 0;
             background-size: cover;
-    background-position: center;
+            background-position: center;
             background-image:
                 linear-gradient(
                     rgba(0,0,0,0.65),
@@ -57,8 +57,8 @@
             background-color: #0a0a0a;
             color: #ffffff;
             background-size: cover;
-    background-position: center;
-    background-image:
+            background-position: center;
+            background-image:
                 linear-gradient(
                     rgba(0,0,0,0.55),
                     rgba(0,0,0,0.70)
@@ -67,8 +67,7 @@
         }
         .cards {
             background-color: #141414;
-            
-                 background-size: cover;
+            background-size: cover;
             background-position: center;
             background-image:
                 linear-gradient(
@@ -188,7 +187,7 @@
 
                 <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
 
-                    <a class="btn btn-red" href="cliente/cliente.php">
+                    <a class="btn btn-red" href="cadastro.php">
                         Cadastre-se
                     </a>
 

@@ -31,3 +31,13 @@ function exigir_tipo(array $tipos): void
         exit;
     }
 }
+
+function redirecionar_por_tipo(string $tipo): void
+{
+    if ($tipo === 'admin') {
+        header('Location: /oficina_mecanica/admin/index.php');
+    } else {
+        header('Location: /oficina_mecanica/index.php');
+    }
+    exit;
+}
