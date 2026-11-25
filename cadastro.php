@@ -18,40 +18,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = 'A senha deve ter pelo menos 6 caracteres.';
     } elseif ($senha !== $confirma) {
         $erro = 'As senhas não coincidem.';
+    } elseif (buscar_usuario_por_email($conn, $email)) {
+        $erro = 'Este e-mail já está cadastrado.';
     } else {
-        $stmt = mysqli_prepare($conn, 'SELECT id FROM usuarios WHERE email = ?');
-        mysqli_stmt_bind_param($stmt, 's', $email);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
-        $existe = mysqli_stmt_num_rows($stmt) > 0;
-        mysqli_stmt_close($stmt);
+        $hash = password_hash($senha, PASSWORD_DEFAULT);
 
-        if ($existe) {
-            $erro = 'Este e-mail já está cadastrado.';
-        } else {
-            $hash = password_hash($senha, PASSWORD_DEFAULT);
-            $resultado = mysqli_query($conn, 'SELECT COUNT(*) AS total FROM usuarios');
-$total = mysqli_fetch_assoc($resultado)['total'];
+        // Se não existe nenhum admin, o primeiro cadastro vira admin
+        $resultado = mysqli_query($conn, 'SELECT COUNT(*) AS total FROM admin');
+        $total_admins = mysqli_fetch_assoc($resultado)['total'];
 
-$tipo = ($total == 0) ? 'admin' : 'cliente';
-
+        if ($total_admins == 0) {
+            $tipo = 'admin';
             $stmt = mysqli_prepare(
                 $conn,
-                'INSERT INTO usuarios (nome, email, senha, telefone, tipo) VALUES (?, ?, ?, ?, ?)'
+                'INSERT INTO admin (nome_adm, email_adm, tel_adm, senha_adm) VALUES (?, ?, ?, ?)'
             );
-            mysqli_stmt_bind_param($stmt, 'sssss', $nome, $email, $hash, $telefone, $tipo);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt);
-
-            $novo_id = mysqli_insert_id($conn);
-
-            session_regenerate_id(true);
-            $_SESSION['usuario_id'] = $novo_id;
-            $_SESSION['usuario_nome'] = $nome;
-            $_SESSION['usuario_tipo'] = $tipo;
-
-            redirecionar_por_tipo($tipo);
+        } else {
+            $tipo = 'cliente';
+            $stmt = mysqli_prepare(
+                $conn,
+                'INSERT INTO cliente (nome_clien, email_clien, telefone_clien, senha_clien) VALUES (?, ?, ?, ?)'
+            );
         }
+
+        mysqli_stmt_bind_param($stmt, 'ssss', $nome, $email, $telefone, $hash);
+        mysqli_stmt_execute($stmt);
+        $novo_id = mysqli_insert_id($conn);
+        mysqli_stmt_close($stmt);
+
+        // Entra automaticamente
+        session_regenerate_id(true);
+        $_SESSION['usuario_id'] = $novo_id;
+        $_SESSION['usuario_nome'] = $nome;
+        $_SESSION['usuario_tipo'] = $tipo;
+
+        redirecionar_por_tipo($tipo);
     }
 }
 ?>
@@ -78,7 +79,7 @@ $tipo = ($total == 0) ? 'admin' : 'cliente';
         background-color: #000000;
     }
         
-        .box { max-width: 450px; margin: 60px auto; 
+        .box { max-width: 650px; margin: 60px auto; 
         background: #222; 
         padding: 2rem; 
         border-radius: 12px;
@@ -152,7 +153,7 @@ $tipo = ($total == 0) ? 'admin' : 'cliente';
 </header>
 
 <div class="container">
-    <div class="box">
+    <div class="box sm-12 md-5 lg-6">
         <h3 class="mb-4 text-center">Criar conta</h3>
 
         <?php if ($erro): ?>

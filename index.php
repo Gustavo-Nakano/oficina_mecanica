@@ -174,7 +174,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="orcamento.php">
+                    <a class="nav-link" href="cadastro.php">
                         Orçamento
                     </a>
                 </li>
@@ -237,7 +237,7 @@
                 </a>
 
                 <a
-                    href="orcamento.php"
+                    href="cadastro.php"
                     class="btn btn-outline-light btn-lg mt-3">
 
                     Solicitar orçamento
@@ -303,7 +303,7 @@
                         </p>
 
                         <a
-                            href="servicos.php"
+                            href="cadastro.php"
                             class="btn btn-outline-danger">
 
                             Ver serviços
@@ -339,7 +339,7 @@
                         </p>
 
                         <a
-                            href="servicos.php"
+                            href="cadastro.php"
                             class="btn btn-outline-danger">
 
                             Ver serviços
@@ -375,7 +375,7 @@
                         </p>
 
                         <a
-                            href="servicos.php"
+                            href="cadastro.php"
                             class="btn btn-outline-danger">
 
                             Ver serviços

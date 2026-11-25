@@ -162,26 +162,26 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="oficina_mecanica/admin/dashboard.php">
+                    <a class="nav-link" href="/oficina_mecanica/admin/dashboard.php">
                         dashboard
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="oficina_mecanica/orcamentos.php">
+                    <a class="nav-link" href="/oficina_mecanica/orcamentos.php">
                         orçamentos
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="oficina_mecanica/clientes.php">
+                    <a class="nav-link" href="/oficina_mecanica/clientes.php">
                         agendamentos
                     </a>
                 </li>
 
                 <li class="nav-item">
 
-                    <a class="nav-link" href="oficina_mecanica/estoque.php">
+                    <a class="nav-link" href="/oficina_mecanica/estoque.php">
                         estoque
                     </a>
 
@@ -189,7 +189,7 @@
                     
                     <li class="nav-item">
 
-                    <a class="nav-link" href="oficina_mecanica/servicos.php">
+                    <a class="nav-link" href="/oficina_mecanica/servicos.php">
                         serviços
                     </a>
 
@@ -197,7 +197,7 @@
 
                     <li class="nav-item">
 
-                    <a class="nav-link" href="oficina_mecanica/notas.php">
+                    <a class="nav-link" href="/oficina_mecanica/notas.php">
                         notas
                     </a>
 
@@ -205,7 +205,7 @@
 
                     <li class="nav-item">
 
-                    <a class="nav-link" href="oficina_mecanica/admin/cadastro_funcionarios.php">
+                    <a class="nav-link" href="/oficina_mecanica/admin/cadastro_funcionarios.php">
                         funcionários 
                     </a>
 
@@ -247,7 +247,7 @@
         </li>
 
         <li>
-            <a class="dropdown-item text-danger" href="#">
+            <a class="dropdown-item text-danger" href="/oficina_mecanica/logout.php">
                 <i class="bi bi-box-arrow-right me-2"></i>
                 Sair
             </a>

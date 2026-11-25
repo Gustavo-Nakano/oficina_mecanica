@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$banco = 'sistema_login';   // nome do seu banco
+$banco = 'oficina';   // nome do seu banco
 $usuario = 'root';             // seu usuário do MySQL
 $senha = '';                   // sua senha do MySQL
 $conn = mysqli_connect($host, $usuario, $senha, $banco); // Conexão com o banco de dados
@@ -34,10 +34,42 @@ function exigir_tipo(array $tipos): void
 
 function redirecionar_por_tipo(string $tipo): void
 {
-    if ($tipo === 'admin') {
-        header('Location: /oficina_mecanica/admin/index.php');
-    } else {
+     if($tipo === 'admin') {
+        header('Location: /oficina_mecanica/admin/admin.php');
+    } elseif($tipo === 'funcionario') {
+        header('Location: /oficina_mecanica/funcionario/funcionario.php');
+    }elseif($tipo === 'cliente') {
+        header('Location: /oficina_mecanica/cliente/cliente.php');
+    } 
+    else {
         header('Location: /oficina_mecanica/index.php');
     }
     exit;
+}
+
+function buscar_usuario_por_email(mysqli $conn, string $email): ?array
+{
+    $consultas = [
+        ['admin', 'SELECT Id_admin AS id, nome_adm AS nome, senha_adm AS senha
+                   FROM admin WHERE email_adm = ?'],
+        ['funcionario', 'SELECT Id_fun AS id, nome_fun AS nome, senha_fun AS senha
+                         FROM funcionarios WHERE email_fun = ?'],
+        ['cliente', 'SELECT Id_clien AS id, nome_clien AS nome, senha_clien AS senha
+                     FROM cliente WHERE email_clien = ?'],
+    ];
+
+    foreach ($consultas as [$tipo, $sql]) {
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $email);
+        mysqli_stmt_execute($stmt);
+        $linha = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+        mysqli_stmt_close($stmt);
+
+        if ($linha) {
+            $linha['tipo'] = $tipo;
+            return $linha;
+        }
+    }
+
+    return null;
 }

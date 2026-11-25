@@ -4,50 +4,26 @@ require __DIR__ . '/config/conn.php';
 
 if (isset($_POST['entrar'])) {
 
-    $email = trim($_POST['email']);
-    $senha = $_POST['senha'];
+    $email = trim($_POST['email'] ?? '');
+    $senha = $_POST['senha'] ?? '';
 
-    $sql = "SELECT * FROM usuarios WHERE email = ?";
-
-    $stmt = mysqli_prepare($conn, $sql);
-
-    mysqli_stmt_bind_param($stmt, "s", $email);
-
-    mysqli_stmt_execute($stmt);
-
-    $resultado = mysqli_stmt_get_result($stmt);
-
-    $usuario = mysqli_fetch_assoc($resultado);
-    mysqli_smt_close($stmt);
+    $usuario = buscar_usuario_por_email($conn, $email);
 
     if ($usuario && password_verify($senha, $usuario['senha'])) {
 
         session_regenerate_id(true);
-
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
         $_SESSION['usuario_tipo'] = $usuario['tipo'];
 
-        if ($usuario['tipo'] === 'admin') {
-            header('Location: admin/admin.php');
-            } elseif ($usuario['tipo'] === 'funcionario') {
-            header('Location: funcionario/funcionario.php');
-            }elseif ($usuario['tipo'] === 'cliente') {
-            header('Location: cliente/cliente.php');
-            }
-             else {
-             header('Location: index.php');
-            }
-        exit;
+        redirecionar_por_tipo($usuario['tipo']);
 
     } else {
-
         $erro = "E-mail ou senha incorretos.";
-
     }
-
-    mysqli_stmt_close($stmt);
 }
+
+
 
 ?>
 
@@ -79,6 +55,7 @@ if (isset($_POST['entrar'])) {
         padding: 2rem; 
         border-radius: 12px;
     color: #fff;
+    padding: 1rem;
    
     
     }
@@ -156,13 +133,13 @@ if (isset($_POST['entrar'])) {
 
                 <form method="POST">
 
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label>E-mail</label>
                         <input type="email" name="email"
                                class="form-control" required>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-5">
                         <label>Senha</label>
                         <input type="password" name="senha"
                                class="form-control" required>
