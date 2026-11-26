@@ -43,7 +43,6 @@ if ($eh_cliente && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_veiculo = (int)($_POST['id_veiculo'] ?? 0);
         $data = trim($_POST['data_agend'] ?? '');
         $hora = trim($_POST['hora_agend'] ?? '');
-        $descricao = trim($_POST['descricao_servico'] ?? '');
 
         if ($id_veiculo === 0 || $data === '' || $hora === '') {
             $erro = 'Selecione o veículo, a data e o horário.';
@@ -63,10 +62,9 @@ if ($eh_cliente && $_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $stmt = mysqli_prepare(
                     $conn,
-                    "INSERT INTO agendamento (data_agend, hora_agend, Id_veiculo, descricao_servico, status)
-                     VALUES (?, ?, ?, ?, 'agendado')"
+                    'INSERT INTO agendamento (data_agend, hora_agend, Id_veiculo) VALUES (?, ?, ?)'
                 );
-                mysqli_stmt_bind_param($stmt, 'ssis', $data, $hora, $id_veiculo, $descricao);
+                mysqli_stmt_bind_param($stmt, 'ssi', $data, $hora, $id_veiculo);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
 
@@ -82,9 +80,8 @@ if ($eh_cliente && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = mysqli_prepare(
             $conn,
-            'UPDATE agendamento a
+            'DELETE a FROM agendamento a
              JOIN veiculos v ON v.Id_veiculo = a.Id_veiculo
-             SET a.status = "cancelado"
              WHERE a.Id_agendamento = ? AND v.Id_clien = ?'
         );
         mysqli_stmt_bind_param($stmt, 'ii', $id_agend, $id_clien);
@@ -175,10 +172,6 @@ if ($eh_cliente) {
         table{ color: #fff; }
         thead{ background-color: #333; }
         tbody tr{ background-color: #1a1a1a; }
-
-        .badge-agendado{ background-color: #2563eb; }
-        .badge-concluido{ background-color: #16a34a; }
-        .badge-cancelado{ background-color: #6b7280; }
     </style>
 </head>
 <body>
@@ -281,7 +274,7 @@ if ($eh_cliente) {
                 <form method="post" action="agendamento.php" class="row g-3">
                     <input type="hidden" name="acao" value="agendar">
 
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <label class="form-label">Veículo *</label>
                         <select name="id_veiculo" class="form-select" required>
                             <option value="">Selecione</option>
@@ -294,7 +287,7 @@ if ($eh_cliente) {
                         </select>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <label class="form-label">Data *</label>
                         <input type="date" name="data_agend" class="form-control" required
                                min="<?= date('Y-m-d') ?>">
@@ -305,16 +298,13 @@ if ($eh_cliente) {
                         <input type="time" name="hora_agend" class="form-control" required>
                     </div>
 
-                    <div class="col-md-3">
-                        <label class="form-label">Serviço desejado</label>
-                        <input type="text" name="descricao_servico" class="form-control"
-                               placeholder="Ex: Troca de óleo">
-                    </div>
-
                     <div class="col-md-2 d-flex align-items-end">
                         <button type="submit" class="btn btn-red w-100">Agendar</button>
                     </div>
                 </form>
+                <p class="text-secondary small mt-3 mb-0">
+                    O serviço desejado será definido junto com o orçamento, feito pela oficina após o agendamento.
+                </p>
             <?php endif; ?>
         </div>
 
@@ -335,8 +325,6 @@ if ($eh_cliente) {
                             <th>Cliente</th>
                             <th>Contato</th>
                         <?php endif; ?>
-                        <th>Serviço</th>
-                        <th>Status</th>
                         <?php if ($eh_cliente): ?>
                             <th class="text-end">Ações</th>
                         <?php endif; ?>
@@ -345,7 +333,7 @@ if ($eh_cliente) {
                 <tbody>
                     <?php if (empty($agendamentos)): ?>
                         <tr>
-                            <td colspan="7" class="text-center text-secondary py-4">
+                            <td colspan="6" class="text-center text-secondary py-4">
                                 Nenhum agendamento encontrado.
                             </td>
                         </tr>
@@ -368,32 +356,16 @@ if ($eh_cliente) {
                                 </td>
                             <?php endif; ?>
 
-                            <td><?= htmlspecialchars($a['descricao_servico'] ?: '—') ?></td>
-
-                            <td>
-                                <?php if ($a['status'] === 'agendado'): ?>
-                                    <span class="badge badge-agendado">Agendado</span>
-                                <?php elseif ($a['status'] === 'concluido'): ?>
-                                    <span class="badge badge-concluido">Concluído</span>
-                                <?php else: ?>
-                                    <span class="badge badge-cancelado">Cancelado</span>
-                                <?php endif; ?>
-                            </td>
-
                             <?php if ($eh_cliente): ?>
                                 <td class="text-end">
-                                    <?php if ($a['status'] === 'agendado'): ?>
-                                        <form method="post" action="agendamento.php" class="d-inline"
-                                              onsubmit="return confirm('Cancelar este agendamento?');">
-                                            <input type="hidden" name="acao" value="cancelar">
-                                            <input type="hidden" name="id_agendamento" value="<?= (int)$a['Id_agendamento'] ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                <i class="bi bi-x-circle"></i> Cancelar
-                                            </button>
-                                        </form>
-                                    <?php else: ?>
-                                        —
-                                    <?php endif; ?>
+                                    <form method="post" action="agendamento.php" class="d-inline"
+                                          onsubmit="return confirm('Cancelar este agendamento?');">
+                                        <input type="hidden" name="acao" value="cancelar">
+                                        <input type="hidden" name="id_agendamento" value="<?= (int)$a['Id_agendamento'] ?>">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-x-circle"></i> Cancelar
+                                        </button>
+                                    </form>
                                 </td>
                             <?php endif; ?>
                         </tr>
@@ -423,7 +395,7 @@ if ($eh_cliente) {
 
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbițxI"
     crossorigin="anonymous"
 ></script>
 </body>

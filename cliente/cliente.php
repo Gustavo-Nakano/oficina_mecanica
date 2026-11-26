@@ -158,19 +158,19 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="servicos.php">
+                <a class="nav-link" href="/oficina_mecanica/servicos.php">
                     Serviços
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="orcamento.php">
+                <a class="nav-link" href="/oficina_mecanica/orcamento.php">
                     Orçamento
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/oficina_mecanica/agendamento.php">
                     Agendamentos
                 </a>
             </li>
@@ -244,7 +244,7 @@
                     </div>
                     <h3 class="card-title text-center">Agendamentos</h3>
                     <p class="card-text">Agende seus serviços de forma rápida e prática.</p>
-                    <a href="/oficina_mecanica/cliente/agendamento.php" class="btn btn-red">Confira seus agendamentos
+                    <a href="/oficina_mecanica/agendamento.php" class="btn btn-red">Confira seus agendamentos
                     <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
@@ -276,7 +276,7 @@
                     </div>
                     <h3 class="card-title text-center">Serviços</h3>
                     <p class="card-text">Conheça nossos serviços.</p>
-                    <a href="/oficina_mecanica/orcamento.php" class="btn btn-red">
+                    <a href="/oficina_mecanica/servicos.php" class="btn btn-red">
                         Confira seus Serviços<i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>

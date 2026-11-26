@@ -158,20 +158,20 @@
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.php">
+                    <a class="nav-link active" href="/oficina_mecanica/funcionario/funcionario.php">
                         Início
                     </a>
                 </li>
 
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="oficina_mecanica/orcamentos.php">
+                    <a class="nav-link" href="/oficina_mecanica/orcamento.php">
                         orçamentos
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="oficina_mecanica/clientes.php">
+                    <a class="nav-link" href="/oficina_mecanica/agendamento.php">
                         agendamentos
                     </a>
                 </li>
@@ -179,7 +179,7 @@
                 
                     <li class="nav-item">
 
-                    <a class="nav-link" href="oficina_mecanica/notas.php">
+                    <a class="nav-link" href="/oficina_mecanica/notas.php">
                         notas
                     </a>
 
@@ -222,7 +222,7 @@
         </li>
 
         <li>
-            <a class="dropdown-item text-danger" href="#">
+            <a class="dropdown-item text-danger" href="/oficina_mecanica/logout.php">
                 <i class="bi bi-box-arrow-right me-2"></i>
                 Sair
             </a>
@@ -258,7 +258,7 @@
                             </div>
                     <h3 class="card-title text-center">Orçamentos</h3>
                     <p class="card-text">Orçamentos a serem realizados.</p>
-                    <a href="/oficina_mecanica/orcamentos.php" class="btn btn-red">Ver: 
+                    <a href="/oficina_mecanica/orcamento.php" class="btn btn-red">Ver: 
                     <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -273,7 +273,7 @@
                             </div>
                     <h3 class="card-title text-center">Notas</h3>
                     <p class="card-text">Notas de servico.</p>
-                    <a href="/oficina_mecanica/admin/dashboard.php" class="btn btn-red">Ver: 
+                    <a href="/oficina_mecanica/notas.php" class="btn btn-red">Ver: 
                     <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>

@@ -168,13 +168,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/oficina_mecanica/orcamentos.php">
+                    <a class="nav-link" href="/oficina_mecanica/orcamento.php">
                         orçamentos
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/oficina_mecanica/clientes.php">
+                    <a class="nav-link" href="/oficina_mecanica/agendamento.php">
                         agendamentos
                     </a>
                 </li>
@@ -299,7 +299,7 @@
                             </div>
                     <h3 class="card-title text-center">Orçamentos</h3>
                     <p class="card-text">Orçamentos a serem realizados.</p>
-                    <a href="/oficina_mecanica/orcamentos.php" class="btn btn-red">Ver: 
+                    <a href="/oficina_mecanica/orcamento.php" class="btn btn-red">Ver: 
                     <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -313,7 +313,7 @@
                             </div>
                     <h3 class="card-title text-center">Estoque</h3>
                     <p class="card-text">Acompanhe os produtos no estoque.</p>
-                    <a href="/oficina_mecanica/orcamentos.php" class="btn btn-red">Ver: 
+                    <a href="/oficina_mecanica/estoque.php" class="btn btn-red">Ver: 
                     <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
